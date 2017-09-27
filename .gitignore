@@ -1,52 +1,101 @@
-# Prerequisites
-*.d
+#include<avr/io.h>
+#include<avr/delay.h>
+void main()
+{
+      DDRD=0b00000000;                                  //Setting      
+      DDRB=0b11111111;                                  //part D as an input part
+      PORTD=0b11111111;                                 //Setting 
+      int c;                                            //part D as an output part
+ while(1)                                          //Puling up 
+  {                                                 //all the pins of part D
+   c=PIND;
+	if(c==0b00000000)                             //ALL SENSORS ARE ON THE TABLE
+		PORTB=0b00001010;
+     
+	if(c==0b00001000)                             //SENSOR 1 IS OUT OF TABLE
+	{
+		PORTB=0b00000101;
+		_delay_ms(300);
+		PORTB=0b00001001;
+		_delay_ms(200);
+	}
+	 
+	if(c==0b00000100)                             //SENSOR 2 IS OUT OF TABLE
+	{                                      
+		PORTB=0b00000101;               
+		_delay_ms(200);                  
+		PORTB=0b00000110;
+		_delay_ms(250);
+	}
+	 
+	if(c==0b00000010)                              //SENSOR 3 IS OUT OF TABLE
+	{                                       
+		PORTB=0b00001010;               
+		_delay_ms(200);                  
+		PORTB=0b00000110;
+		_delay_ms(250);
+	}
+	
+	if(c==0b00000001)                               //SENSOR 4 IS OUT OF TABLE
+	{                                       
+		PORTB=0b00001010;               
+		_delay_ms(200);                  
+		PORTB=0b00000110;
+		_delay_ms(250);
+	}              //Turn right
+	
+	if(c==0b00001100)                                //SENSOR 1 AND 2 ARE OUT OF TABLE
+	{
+		PORTB=0b00000101;              
+		_delay_ms(235);
+		PORTB=0b00001001;
+		_delay_ms(200);
+	}
+	 
+	if(c==0b00001001)                                 //SENSOR 1 AND 4 ARE OUT OF TABLE
+	{
+		    PORTB=0b00001001;            
+	}
+	
+	if(c==0b00000011)                                 //SENSOR 3 AND 4 ARE OUT OF TABLE
+	{
+		    PORTB=0b00001010;            
+	}
+	 
+	 if(c==0b00000110)                                 //SENSOR 2 AND 3 ARE OUT OF TABLE
+	{
+	    	PORTB=0b00000110;            
+	}
 
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+	if(c==0b00001110)                                   //SENSOR 1,2 AND 3 ARE OUT OF TABLE
+	{
+		    PORTB=0b00000110;            
+	}
+	 
+	 if(c==0b00000111)                                   //SENSOR 1 IS ON TABLE
+	{
+		PORTB=0b00000110;            
+	}
+	 
+	 if(c==0b00001011)                                    //SENSOR 2 IS ON TABLE
+	{
+		PORTB=0b00001001;            
+	}
+	 
+	 if(c==0b00001101)                                    //SENSOR 3 IS ON TABLE
+	{
+		PORTB=0b00001001;            
+	}
 
-# Linker output
-*.ilk
-*.map
-*.exp
 
-# Precompiled Headers
-*.gch
-*.pch
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
+}
+}
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
 
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
 
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+
+
+
+
